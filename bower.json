@@ -1,0 +1,22 @@
+{
+  "name": "examen-ProyectoWeb",
+  "homepage": "https://github.com/cmayorgac/examen-ProyectoWeb",
+  "authors": [
+    "cmayorgac <cmayorgac@ucenfotec.ac.cr>"
+  ],
+  "description": "Examen de proyecto web 1",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.5",
+    "angular-ui-router": "^1.0.5",
+    "bootstrap": "^3.3.7"
+  }
+}
