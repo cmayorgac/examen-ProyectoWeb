@@ -1,0 +1,79 @@
+<div class="tabbable-panel">
+  <div class="tabbable-line">
+	  <ul class="nav nav-tabs ">
+  		<li class="active">
+  			<a href="#tab_default_1" data-toggle="tab">Registro</a>
+  		</li>
+  		<li>
+  			<a href="#tab_default_2" data-toggle="tab">Jugadores</a>
+  		</li>
+  		<li>
+  			<a href="#tab_default_3" data-toggle="tab">Propiedades</a>
+  		</li>
+      <li>
+  			<a href="#tab_default_4" data-toggle="tab">Transaccion</a>
+  		</li>
+    </ul>
+		<div class="tab-content">
+			<div class="tab-pane active" id="tab_default_1">
+				<div class="container-fluid">
+				  <div class="row">
+				    <div class="col-xs-12">
+				      <form ng-submit="vm.save(vm.user)" autocomplete="off" novalidate>
+                <div class="form-group col-xs-12 col-sm-6">
+                  <label for="usr">Alias</label>
+                  <input type="text" class="form-control" ng-model="vm.user.alias">
+                </div>
+                <div class="form-group col-xs-12 col-sm-6">
+                  <label for="usr">Nombre completo</label>
+                  <input type="text" class="form-control" ng-model="vm.user.name">
+                </div>
+                <button type="submit" class="btn btn-danger" ng-click="vm.reset()">Registrar</button>
+				      </form>
+				    </div>
+				  </div>
+				</div>
+			</div>
+			<div class="tab-pane" id="tab_default_2">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-3 col-xs-12" ng-repeat="user in vm.users">
+              <div class="list mb-2">
+                <div class="list-header">
+                  <a href="#" class="list-header-image">
+                    <img src="{{user.photo}}">
+                  </a>
+                </div>
+                <div class="list-content">
+                  <h4 class="text-black">{{user.alias}}</h4>
+                  <span class="list-meta">
+                    <span class="list-meta-item">{{user.name}}</span>
+                  </span>
+                  <p>Dinero: {{user.money}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+			<div class="tab-pane" id="tab_default_3">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xs-12">
+              <p>Ahorita no joven</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="tab_default_4">
+			  <div class="container-fluid">
+			    <div class="row">
+			      <div class="col-xs-12">
+			        <p>Ahorita no joven</p>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+  </div>
+</div>
