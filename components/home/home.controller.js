@@ -4,14 +4,14 @@
   .module('app')
   .controller('homeCtrl', homeCtrl);
 
-  function homeCtrl($http, $state, /*imageService,*/ userService/*, propertyService*/){
+  function homeCtrl($http, $state, /*imageService,*/ userService, propertyService){
     var vm = this;
     // vm.cloudObj = imageService.getConfiguration();
 
     function init(){
       vm.user = {};
       vm.users = userService.getUser();
-    //  vm.properties = propertyService.getProperty();
+      vm.properties = propertyService.getProperty();
     }init();
 
     vm.preSave = function(newUser){

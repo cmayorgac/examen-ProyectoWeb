@@ -10,7 +10,9 @@ a.text-black:focus, a.text-black:hover {
     color: #7b7b7b !important;
 }
 
-
+.card{
+  margin: 0.5% 0;
+}
 
 .list {
     display: block;
@@ -102,4 +104,9 @@ a.text-black:focus, a.text-black:hover {
     padding: 15px;
     clear: both;
   }
+}
+
+
+.panel{
+  padding: 0;
 }
