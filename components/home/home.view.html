@@ -49,7 +49,7 @@
                   <span class="list-meta">
                     <span class="list-meta-item">{{user.name}}</span>
                   </span>
-                  <p>Dinero: {{user.money}}</p>
+                  <p>Dinero: ${{user.money}}</p>
                 </div>
               </div>
             </div>
@@ -62,7 +62,11 @@
             <div class="col-sm-3 col-xs-12" ng-repeat="property in vm.properties track by $index">
               <div class="panel panel-danger">
                 <div class="panel-heading">{{property.name}}</div>
-                <div class="panel-body">costo: {{property.price}}</div>
+                <div class="panel-body">
+                  <p>Costo: ${{property.price}}</p>
+                  <p>Dueño: <span ng-if="property.ownedby == -1">Propiedad disponible</span><span ng-if="property.ownedby !== -1">{{property.ownedby}}</span></p>
+                  <p>Hipotecado: <span ng-if="property.mortgaged == false">NO</span><span ng-if="property.ownedby == true">SI</span></p>
+                </div>
               </div>
             </div>
           </div>
@@ -72,10 +76,10 @@
 			  <div class="container-fluid">
 			    <div class="row">
 			      <div class="col-xs-12">
-			        <form ng-submit="vm.transaction(vm.user)" autocomplete="off" novalidate>
+			        <form ng-submit="vm.transaction(vm.info)" autocomplete="off" novalidate>
                 <div class="form-group col-xs-12 col-sm-6">
                   <label for="usr">Comprador</label>
-                  <input list="buyerList" type="text" class="form-control" ng-model="vm.transaction.buyer">
+                  <input list="buyerList" type="text" class="form-control" ng-model="vm.info.buyer">
                   <datalist id="buyerList">
                     <option invalide>--Selecione un omprador--</option>
                     <option ng-repeat="user in vm.users track by $index" value="{{user.alias}}">{{user.alias}}</option>
@@ -83,12 +87,13 @@
                 </div>
                 <div class="form-group col-xs-12 col-sm-6">
                   <label for="usr">Propiedad</label>
-                  <input list="propertyList" type="text" class="form-control" ng-model="vm.transaction.property">
+                  <input list="propertyList" type="text" class="form-control" ng-model="vm.info.property">
                   <datalist id="propertyList">
                     <option invalide>--Selecione una propiedad--</option>
-                    <option ng-repeat="property in vm.properties track by $index" value="{{property.name}}">{{property.name}}</option>
+                    <option ng-repeat="property in vm.properties track by $index" value="{{property.id}}">{{property.name}}</option>
                   </datalist>
                 </div>
+                <button type="submit" class="btn btn-danger" ng-click="vm.reset()">Comprar</button>
 			        </form>
 			      </div>
 			    </div>

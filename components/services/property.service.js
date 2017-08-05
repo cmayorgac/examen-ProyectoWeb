@@ -716,7 +716,9 @@
     }
     ];
     var publicAPI = {
-      getProperty: _getProperty
+      getProperty: _getProperty,
+      search: _search,
+      update: _update
     };
     return publicAPI;
     // informacion actual
@@ -726,6 +728,25 @@
         propertyList = property;
       }
       return propertyList;
+    }
+    // buscar propiedad
+    function _search(property){
+      var propertyList = _getProperty();
+      for (var i = 0; i < propertyList.length; i++) {
+        if (property == propertyList[i].id) {
+          return propertyList[i];
+        }
+      }
+    }
+    // actulizar
+    function _update(editProperty){
+      var propertyList = _getProperty();
+      for (var i = 0; i < propertyList.length; i++) {
+        if (propertyList[i].id == editProperty.id) {
+          propertyList[i] = editProperty;
+        }
+      }
+      localStorage.setItem('lsPropertyList', JSON.stringify(propertyList));
     }
   }
 })();

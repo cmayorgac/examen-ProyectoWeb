@@ -55,27 +55,3 @@
 .portlet .tabbable-line > .tab-content {
   padding-bottom: 0;
 }
-
-/* Below tabs mode */
-
-.tabbable-line.tabs-below > .nav-tabs > li {
-  border-top: 4px solid transparent;
-}
-.tabbable-line.tabs-below > .nav-tabs > li > a {
-  margin-top: 0;
-}
-.tabbable-line.tabs-below > .nav-tabs > li:hover {
-  border-bottom: 0;
-  border-top: 4px solid #fbcdcf;
-}
-.tabbable-line.tabs-below > .nav-tabs > li.active {
-  margin-bottom: -2px;
-  border-bottom: 0;
-  border-top: 4px solid #f3565d;
-}
-.tabbable-line.tabs-below > .tab-content {
-  margin-top: -10px;
-  border-top: 0;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 15px;
-}

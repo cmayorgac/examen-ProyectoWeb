@@ -37,7 +37,9 @@
     ];
     var publicAPI = {
       setUser: _setUser,
-      getUser: _getUser
+      getUser: _getUser,
+      search: _search,
+      update: _update
     };
     return publicAPI;
     // guardar
@@ -53,6 +55,25 @@
         userList = user;
       }
       return userList;
+    }
+    // buscar comprador
+    function _search(buyer){
+      var userList = _getUser();
+      for (var i = 0; i < userList.length; i++) {
+        if (buyer == userList[i].alias) {
+          return userList[i];
+        }
+      }
+    }
+    // actulizar
+    function _update(editUser){
+      var userList = _getUser();
+      for (var i = 0; i < userList.length; i++) {
+        if (userList[i].alias == editUser.alias) {
+          userList[i] = editUser;
+        }
+      }
+      localStorage.setItem('lsUserList', JSON.stringify(userList));
     }
   }
 })();

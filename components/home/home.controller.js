@@ -29,10 +29,30 @@
 
     vm.save = function(newUser){
       newUser.money = 1000;
-      console.log(newUser);
       userService.setUser(newUser);
       init();
     }
 
+    vm.transaction = function(newTransaction){
+      var buyer = userService.search(newTransaction.buyer);
+      console.log(buyer);
+      var property = propertyService.search(newTransaction.property);
+      console.log(property);
+      if (property.ownedby == -1) {
+        if (buyer.money > property.price) {
+          buyer.money -= property.price;
+          property.ownedby = buyer.alias;
+          userService.update(buyer);
+          propertyService.update(property);
+          console.log(buyer);
+          console.log(property);
+          init();
+        }else {
+          console.log("no tiene dinero");
+        }
+      }else {
+        console.log("la propiedad esta vendida");
+      }
+    }
   }
 })();
