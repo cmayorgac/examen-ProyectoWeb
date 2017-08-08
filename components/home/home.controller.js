@@ -3,10 +3,10 @@
   angular
   .module('app')
   .controller('homeCtrl', homeCtrl);
-
-  function homeCtrl($http, $state, /*imageService,*/ userService, propertyService){
+  homeCtrl.$inject = ['$http', '$state', 'imageService', 'Upload', 'userService', 'propertyService'];
+  function homeCtrl($http, $state, imageService, Upload, userService, propertyService){
     var vm = this;
-    // vm.cloudObj = imageService.getConfiguration();
+    vm.cloudObj = imageService.getConfiguration();
 
     function init(){
       vm.user = {};
@@ -29,6 +29,7 @@
 
     vm.save = function(newUser){
       newUser.money = 1000;
+        console.log(newUser);
       userService.setUser(newUser);
       init();
     }

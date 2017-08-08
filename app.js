@@ -1,4 +1,4 @@
 (function(){
   angular
-  .module('app',['appRoutes']);
+  .module('app',['appRoutes','ngFileUpload']);
 })();
