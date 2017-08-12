@@ -2,8 +2,8 @@
   angular
   .module('app')
   .service('userService', userService);
-
-  function userService(){
+  userService.$inject = ['$http'];
+  function userService($http){
     var user = [
       {
         id: 001,
@@ -44,9 +44,10 @@
     return publicAPI;
     // guardar
     function _setUser(newUser){
-      var userList = _getUser();
-      userList.push(newUser);
-      localStorage.setItem('lsUserList', JSON.stringify(userList));
+      // var userList = _getUser();
+      // userList.push(newUser);
+      // localStorage.setItem('lsUserList', JSON.stringify(userList));
+      return $http.post('http://localhost:8000/api/users', newUser);
     }
     // informacion actual
     function _getUser(){
