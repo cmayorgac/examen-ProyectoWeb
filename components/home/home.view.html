@@ -93,7 +93,7 @@
                   <label for="usr">Comprador</label>
                   <input list="buyerList" type="text" class="form-control" ng-model="vm.info.buyer">
                   <datalist id="buyerList">
-                    <option invalide>--Selecione un omprador--</option>
+                    <option invalide>--Selecione un comprador--</option>
                     <option ng-repeat="user in vm.users track by $index" value="{{user.alias}}">{{user.alias}}</option>
                   </datalist>
                 </div>
