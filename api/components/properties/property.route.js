@@ -1,6 +1,6 @@
 var express = require('express');
 var	router = express.Router();
-var userController = require('./user.controller.js');
+var userController = require('./property.controller.js');
 
 //Para las rutas con id
 router.param('id',function(req, res, next, id){
@@ -8,13 +8,7 @@ router.param('id',function(req, res, next, id){
   next();
 });
 
-//Decalaracion de las rutas
-router.route('/save_user')
-  .post(function(req, res){
-    userController.save(req, res);
-  });
-
-router.route('/get_all_users')
+router.route('/get_all_properties')
   .get(function(req, res){
       userController.findAll(req,res);
   });

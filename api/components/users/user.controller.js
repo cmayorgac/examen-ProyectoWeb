@@ -1,7 +1,7 @@
-var User = require('./user.model.js');
+var user = require('./user.model.js');
 
-model.exports.save = function(req, res){
-  var newUser = new User({
+module.exports.save = function(req, res){
+  var newUser = new user({
     id: req.body.id,
     alias: req.body.alias,
     name: req.body.name,
@@ -11,10 +11,15 @@ model.exports.save = function(req, res){
 
   newUser.save(function(err){
     if(err){
-      res.json({success:false,msg:'El correo electrónico ya existe.'});
+      res.json({success:false,msg:'El usuario ya existe.'});
     }else{
       res.json({success:true,msg:'Se ha registrado correctamente.'});
     }
-    });
-
+  });
 }
+
+module.exports.findAll = function(req,res){
+  user.find().then(function(users){
+    res.send(users);
+  })
+};

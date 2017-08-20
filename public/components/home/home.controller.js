@@ -10,8 +10,12 @@
 
     function init(){
       vm.user = {};
-      vm.users = userService.getUser();
-      vm.properties = propertyService.getProperty();
+      userService.getUser().then(function(response){
+        vm.users = response.data;
+      });
+      propertyService.getProperty().then(function(response){
+        vm.properties = response.data;
+      });
     }init();
 
     vm.preSave = function(newUser){
@@ -29,8 +33,10 @@
 
     vm.save = function(newUser){
       newUser.money = 1000;
-        console.log(newUser);
-      userService.setUser(newUser);
+      console.log(newUser);
+      userService.setUser(newUser).then(function(response){
+        vm.users = response.data;
+      });
       init();
     }
 

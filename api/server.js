@@ -8,8 +8,8 @@ var express = require('express'),
 
 // Se establece una conexión con mongoose por medio de las siguientes variables
 var db = mongoose.connection,
-    dburl = 'mongodb://admin:admin@ds053186.mlab.com:53186/db_exam',
-    port = 8000;
+    dburl = 'mongodb://admin:123@ds053186.mlab.com:53186/db_exam',
+    port = 3000;
 // se le indica al servidor la tarea a ejecutar
 var server = app.listen(port,_server());
 
@@ -38,10 +38,12 @@ app.use( function(req, res, next){
 });
 // Se definen las rutas que van estar ligadas a toda la funcionalidad de la aplicacion
 var index = require('./index'),
-    userRoutes = require('./components/users/user.route');
+    userRoutes = require('./components/users/user.route'),
+    propertyRoutes = require('./components/properties/property.route');
 // Se definen las rutas de los servicios con las que se conecta el front-end
-app.use('/api', userRoutes);
 app.use('/', index);
+app.use('/api', userRoutes);
+app.use('/api', propertyRoutes);
 
 // Se guarda todo lo que se ha realizado
 module.exports = app;
