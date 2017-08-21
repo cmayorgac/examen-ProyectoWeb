@@ -7,7 +7,7 @@
     var property = [];
     var publicAPI = {
       getProperty: _getProperty,
-      //search: _search,
+      search: _search,
       update: _update
     };
     return publicAPI;
@@ -21,10 +21,9 @@
       return $http.get('http://localhost:3000/api/get_all_properties');
     }
     // buscar propiedad
-    function _search(property){
-      var propertyList = _getProperty();
+    function _search(propertyList, property){
       for (var i = 0; i < propertyList.length; i++) {
-        if (property == propertyList[i].id) {
+        if (property == propertyList[i].name) {
           return propertyList[i];
         }
       }
@@ -38,6 +37,8 @@
       //   }
       // }
       // localStorage.setItem('lsPropertyList', JSON.stringify(propertyList));
+      return $http.put('http://localhost:3000/api/update_property', editProperty);
+
     }
   }
 })();

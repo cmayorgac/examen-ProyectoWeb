@@ -16,10 +16,20 @@ module.exports.save = function(req, res){
       res.json({success:true,msg:'Se ha registrado correctamente.'});
     }
   });
-}
+};
 
 module.exports.findAll = function(req,res){
   user.find().then(function(users){
     res.send(users);
+  })
+};
+
+module.exports.update = function(req,res){
+  user.findByIdAndUpdate(req.body._id, { $set: req.body}, function (err, user) {
+    if (err){
+      res.json({success:true,msg:'No se ha actualizado.' + handleError(err)});
+    } else{
+      res.json({success:true,msg:'Se ha actualizado correctamente.' + res});
+    }
   })
 };

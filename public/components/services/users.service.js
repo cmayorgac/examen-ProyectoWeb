@@ -29,8 +29,7 @@
       return $http.get('http://localhost:3000/api/get_all_users');
     }
     // buscar comprador
-    function _search(buyer){
-      var userList = _getUser();
+    function _search(userList, buyer){
       for (var i = 0; i < userList.length; i++) {
         if (buyer == userList[i].alias) {
           return userList[i];
@@ -39,13 +38,14 @@
     }
     // actulizar
     function _update(editUser){
-      var userList = _getUser();
-      for (var i = 0; i < userList.length; i++) {
-        if (userList[i].alias == editUser.alias) {
-          userList[i] = editUser;
-        }
-      }
-      localStorage.setItem('lsUserList', JSON.stringify(userList));
+      // var userList = _getUser();
+      // for (var i = 0; i < userList.length; i++) {
+      //   if (userList[i].alias == editUser.alias) {
+      //     userList[i] = editUser;
+      //   }
+      // }
+      // localStorage.setItem('lsUserList', JSON.stringify(userList));
+      return $http.put('http://localhost:3000/api/update_user', editUser);
     }
   }
 })();

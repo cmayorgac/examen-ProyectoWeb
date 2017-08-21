@@ -19,4 +19,9 @@ router.route('/get_all_users')
       userController.findAll(req,res);
   });
 
+router.route('/update_user')
+  .put(function(req, res){
+      userController.update(req,res);
+  });
+
 module.exports = router;

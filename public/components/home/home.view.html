@@ -76,7 +76,7 @@
                 <div class="panel-heading">{{property.name}}</div>
                 <div class="panel-body">
                   <p>Costo: ${{property.price}}</p>
-                  <p>Dueño: <span ng-if="property.ownedby == -1">Propiedad disponible</span><span ng-if="property.ownedby !== -1"></span></p>
+                  <p>Dueño: <span ng-if="property.ownedby == -1">Propiedad disponible</span><span ng-if="property.ownedby !== -1">{{property.ownedby}}</span></p>
                   <p>Hipotecado: <span ng-if="property.mortgaged == false">NO</span><span ng-if="property.mortgaged == true">SI</span></p>
                 </div>
               </div>

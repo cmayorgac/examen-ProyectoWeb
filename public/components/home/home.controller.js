@@ -41,18 +41,20 @@
     }
 
     vm.transaction = function(newTransaction){
-      var buyer = userService.search(newTransaction.buyer);
-      console.log(buyer);
-      var property = propertyService.search(newTransaction.property);
-      console.log(property);
+      var userList = vm.users;
+      var buyer = userService.search(userList, newTransaction.buyer);
+      var propertyList = vm.properties;
+      var property = propertyService.search(propertyList, newTransaction.property);
       if (property.ownedby == -1) {
         if (buyer.money > property.price) {
           buyer.money -= property.price;
           property.ownedby = buyer.alias;
-          userService.update(buyer);
-          propertyService.update(property);
-          console.log(buyer);
-          console.log(property);
+          userService.update(buyer).then(function(response){
+            vm.users = response.data;
+        });
+          propertyService.update(property).then(function(response){
+            vm.properties = response.data;
+        });
           init();
         }else {
           console.log("no tiene dinero");
