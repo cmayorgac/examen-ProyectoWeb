@@ -66,10 +66,12 @@
         }else {
           console.log("no tiene dinero");
           vm.alertD = {state: true};
+          init();
         }
       }else {
         console.log("la propiedad esta vendida");
         vm.alertP = {state: true};
+        init();
       }
     }
 
