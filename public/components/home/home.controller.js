@@ -7,9 +7,14 @@
   function homeCtrl($http, $state, imageService, Upload, userService, propertyService){
     var vm = this;
     vm.cloudObj = imageService.getConfiguration();
+    vm.alertR = {state: false};
+    vm.alertC = {state: false};
+    vm.alertD = {state: false};
+    vm.alertP = {state: false};
 
     function init(){
       vm.user = {};
+      vm.info = {};
       userService.getUser().then(function(response){
         vm.users = response.data;
       });
@@ -36,6 +41,7 @@
       console.log(newUser);
       userService.setUser(newUser).then(function(response){
         vm.users = response.data;
+        vm.alertR = {state: true};
       });
       init();
     }
@@ -51,6 +57,7 @@
           property.ownedby = buyer.alias;
           userService.update(buyer).then(function(response){
             vm.users = response.data;
+            vm.alertC = {state: true};
         });
           propertyService.update(property).then(function(response){
             vm.properties = response.data;
@@ -58,10 +65,19 @@
           init();
         }else {
           console.log("no tiene dinero");
+          vm.alertD = {state: true};
         }
       }else {
         console.log("la propiedad esta vendida");
+        vm.alertP = {state: true};
       }
+    }
+
+    vm.cancel = function(){
+      vm.alertR = {state: false};
+      vm.alertC = {state: false};
+      vm.alertD = {state: false};
+      vm.alertP = {state: false};
     }
   }
 })();

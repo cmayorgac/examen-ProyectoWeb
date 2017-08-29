@@ -19,18 +19,22 @@
 				<div class="container-fluid">
 				  <div class="row">
 				    <div class="col-xs-12">
-				      <form ng-submit="vm.preSave(vm.user)" autocomplete="off" novalidate>
+              <div class="alert alert-success col-xs-12" ng-show="vm.alertR.state">
+                <strong class="col-xs-10">¡Registro realizado con exito!</strong>
+                <button type="button" class="btn btn-default pull-right" ng-click="vm.cancel()">X</button>
+              </div>
+				      <form name="frmRegister" ng-submit="vm.preSave(vm.user)" autocomplete="off" novalidate>
                 <div class="form-group col-xs-12 col-sm-6">
                   <label for="usr">Código</label>
-                  <input type="text" class="form-control" ng-model="vm.user.id">
+                  <input type="text" class="form-control" ng-model="vm.user.id" required>
                 </div>
                 <div class="form-group col-xs-12 col-sm-6">
                   <label for="usr">Alias</label>
-                  <input type="text" class="form-control" ng-model="vm.user.alias">
+                  <input type="text" class="form-control" ng-model="vm.user.alias" required>
                 </div>
                 <div class="form-group col-xs-12 col-sm-6">
                   <label for="usr">Nombre completo</label>
-                  <input type="text" class="form-control" ng-model="vm.user.name">
+                  <input type="text" class="form-control" ng-model="vm.user.name" required>
                 </div>
                 <div class="form-group col-xs-12 col-sm-6">
                   <label for="">Subir foto</label>
@@ -38,7 +42,7 @@
                 </div>
                 <div class="row">
                   <div class="col-xs-12">
-                    <button type="submit" class="btn btn-danger" ng-click="vm.reset()">Registrar</button>
+                    <button type="submit" class="btn btn-danger" ng-click="vm.reset()" ng-disabled="frmRegister.$invalid">Registrar</button>
                   </div>
                 </div>
 				      </form>
@@ -91,10 +95,22 @@
 			  <div class="container-fluid">
 			    <div class="row">
 			      <div class="col-xs-12">
-			        <form ng-submit="vm.transaction(vm.info)" autocomplete="off" novalidate>
+              <div class="alert alert-success col-xs-12" ng-show="vm.alertC.state">
+                <strong class="col-xs-10">¡Compra realizado con exito!</strong>
+                <button type="button" class="btn btn-default pull-right" ng-click="vm.cancel()">X</button>
+              </div>
+              <div class="alert alert-danger col-xs-12" ng-show="vm.alertD.state">
+                <strong class="col-xs-10">Dinero insuficiente</strong>
+                <button type="button" class="btn btn-default pull-right" ng-click="vm.cancel()">X</button>
+              </div>
+              <div class="alert alert-danger col-xs-12" ng-show="vm.alertP.state">
+                <strong class="col-xs-10">Propiedad no disponible a la venta</strong>
+                <button type="button" class="btn btn-default pull-right" ng-click="vm.cancel()">X</button>
+              </div>
+			        <form name="frmTransaction" ng-submit="vm.transaction(vm.info)" autocomplete="off" novalidate>
                 <div class="form-group col-xs-12 col-sm-6">
                   <label for="usr">Comprador</label>
-                  <input list="buyerList" type="text" class="form-control" ng-model="vm.info.buyer">
+                  <input list="buyerList" type="text" class="form-control" ng-model="vm.info.buyer" required>
                   <datalist id="buyerList">
                     <option invalide>--Selecione un comprador--</option>
                     <option ng-repeat="user in vm.users" value="{{user.alias}}">{{user.alias}}</option>
@@ -102,13 +118,13 @@
                 </div>
                 <div class="form-group col-xs-12 col-sm-6">
                   <label for="usr">Propiedad</label>
-                  <input list="propertyList" type="text" class="form-control" ng-model="vm.info.property">
+                  <input list="propertyList" type="text" class="form-control" ng-model="vm.info.property" required>
                   <datalist id="propertyList">
                     <option invalide>--Selecione una propiedad--</option>
                     <option ng-repeat="property in vm.properties" value="{{property.name}}">{{property.name}}</option>
                   </datalist>
                 </div>
-                <button type="submit" class="btn btn-danger" ng-click="vm.reset()">Comprar</button>
+                <button type="submit" class="btn btn-danger" ng-click="vm.reset()" ng-disabled="frmTransaction.$invalid">Comprar</button>
 			        </form>
 			      </div>
 			    </div>
